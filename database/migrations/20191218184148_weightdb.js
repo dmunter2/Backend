@@ -3,30 +3,62 @@ exports.up = function(knex) {
   return knex.schema
 
   .createTable('users', users => {
-    users.increments('id');
+    users.increments();
 
-    users.string('username', 128).notNullable().unique();
+    
+    users
+     .string('username', 128)
+     .notNullable()
+     .unique();
 
-    users.string('password', 128).notNullable();
+    users
+     .string('password', 128)
+     .notNullable();
+
+
+
+
   })
 
-  .createTable('lift', lift => {
-    lift.increments('id')
-
-    lift.string('exercise_name').notNullable()
-
-    lift.string('muscle_group').notNullable()
-
-    lift.float('weight_number').notNullable()
 
 
-    lift.float('reps')
+    .createTable('exercises', exercises => {
 
-    lift.date('date')
 
-    lift.integer('sets')
+    exercises.increments('')
 
-    lift.string('Goals')
+    exercises
+     .string('exercise_name')
+     .notNullable()
+
+    exercises
+     .string('muscle_group')
+     .notNullable()
+
+    exercises
+     .float('weight_number')
+     .notNullable()
+
+    exercises
+     .float('reps')
+
+    exercises
+     .date('date')
+
+    exercises
+     .integer('sets')
+
+    exercises
+     .string('Goals')
+
+    exercises
+     .integer('user_id')
+     .unsigned()
+     .references('id')
+     .inTable('users')
+     .onDelete('CASCADE')
+     .onUpdate('CASCADE')
+
 
 
   })
@@ -44,7 +76,8 @@ exports.up = function(knex) {
 
 
 exports.down = function(knex) {
-  
+  return knex.schema.dropTableIfExists('users').dropTableIfExists('exercises');
+
 
 
 
@@ -57,41 +90,3 @@ exports.down = function(knex) {
 
 
 
-
-
-
-
-exports.up = function(knex) {
-  return knex.schema
-  
-  
-  .createTable('users', users => {
-      users.increments('id');
-            
-      users.string('username', 128).notNullable().unique();
-
-      users.string('password', 128).notNullable();
-  })
-
-  .createTable('todo', todo => {
-      todo.increments('id');
-
-      todo.string('title', 128).notNullable();
-
-      todo.string('description');
-
-      todo.string('users_id').notNullable().unsigned().references('users.id')
-
-  })
-
-  
-  
-  
-  
-};
-
-exports.down = function(knex) {
-  return knex.schema
-    .dropTableIfExists('users')
-    .dropTableIfExists('todo')
-};
