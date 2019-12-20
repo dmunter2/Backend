@@ -23,6 +23,10 @@
     "server": "nodemon index.js",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmunter2/Backend.git"
+  },
   "keywords": [],
   "author": "",
   "description": ""
