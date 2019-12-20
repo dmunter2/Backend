@@ -15,7 +15,7 @@ server.use(express.json())
 server.use('/api/auth', authRouter)
 // server.use('/api/users', usersRouter)
 
-// server.use('/api/excercise', exerciseRouter)
+server.use('/api/user', exerciseRouter)
 
 
 
@@ -29,3 +29,16 @@ server.get('/', (req,res) => {
 
 module.exports = server;
 
+
+
+
+// {
+//     "exercise_name": "test",
+//         "muscle_group": "test1",
+//             "weight_number": 100,
+//                 "reps": 10,
+//                     "sets": 4,
+//                         "Goals": "test2",
+//                             "date": "123"
+//     "user_id": "dmunter"
+// }
