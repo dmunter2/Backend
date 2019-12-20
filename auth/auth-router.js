@@ -6,7 +6,6 @@ const secrets = require('../config/secrets')
 
 
 
-
 router.post('/register', (req,res) => {
    
     if(!req.body.username || !req.body.password){
