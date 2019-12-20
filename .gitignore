@@ -82,3 +82,6 @@ typings/
 
 # this is env file
 .env
+
+
+config/
