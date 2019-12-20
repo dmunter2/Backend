@@ -5,4 +5,4 @@ config
 #env files
 .env
 
-node modules/
+node modules
