@@ -13,8 +13,10 @@ module.exports = {
 
 
 function find() {
-    return db('exercises').select('id', 'username', 'password')
+    return db('exercises').select('exercise_name', 'muscle_group', 'weight_number', 'reps', 'date', 'sets', 'goals', 'user_id')
 }
+
+
 
 function findBy(filter) {
     return db('exercises').where(filter)
@@ -34,9 +36,9 @@ function findById(id) {
 }
 
 
-function update(id, changes) {
+function update(user_id, changes) {
     return db('exercises')
-        .where({ id })
+        .where({ user_id })
         .update(changes, '*');
 }
 

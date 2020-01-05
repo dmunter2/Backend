@@ -13,7 +13,7 @@ server.use(express.json())
 
 
 server.use('/api/auth', authRouter)
-// server.use('/api/users', usersRouter)
+server.use('/api', usersRouter)
 
 server.use('/api/user', exerciseRouter)
 

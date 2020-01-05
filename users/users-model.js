@@ -36,7 +36,7 @@ function findById(id) {
 
 
 function update(id, changes) {
-  return db('schemes')
+  return db('users')
     .where({ id })
     .update(changes, '*');
 }
@@ -54,7 +54,7 @@ function insert(user) {
 // wont have an option to remove users, only an option to remove any workouts
 
 function remove(id) {
-    return db('user')
+    return db('users')
         .where('id', id)
         .del();
 }
