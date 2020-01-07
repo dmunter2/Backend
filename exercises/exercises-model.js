@@ -20,9 +20,9 @@ function find() {
 
 
 
-function findBy(filter) {
-    return db('exercises').where(filter)
-}
+// function findBy(filter) {
+//     return db('exercises').where(filter)
+// }
 
 
 async function add(exercise) {
@@ -30,6 +30,13 @@ async function add(exercise) {
 
     return findById(id);
 }
+
+
+function findBy(id) {
+    return db('exercises').select('exercise_name', 'muscle_group', 'weight_number' ).where({ user_id: id })
+}
+
+
 
 function findById(id) {
     return db('exercises')
