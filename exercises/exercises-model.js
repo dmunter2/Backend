@@ -7,7 +7,9 @@ module.exports = {
     findById,
     update,
     insert,
-    remove
+    remove,
+    findTitle,
+
 
 };
 
@@ -54,8 +56,64 @@ function insert(user) {
 
 // wont have an option to remove users, only an option to remove any workouts
 
-function remove(id) {
+// function remove(id) {
+//     return db('exercises')
+//         .where('id', id)
+//         .del();
+// }
+
+function findTitle(exercise_name) {
     return db('exercises')
-        .where('id', id)
-        .del();
+        .where('exercise_name', exercise_name)
 }
+
+function remove(exercise_name) {
+    return db('exercises')
+        .where('exercise_name', exercise_name)
+        .del()
+        // .then(() => { return findBy(id) })
+}
+
+
+
+// function find() {
+//     return db('todo').select('id', 'title', 'description', 'users_id')
+// }
+
+// function findList(id) {
+//     return db('todo').select('title', 'description', "users_id").where({ id })
+// }
+
+// function findBy(id) {
+//     return db('todo').select('title', 'description').where({ users_id: id })
+// }
+
+
+// function update(id, todo) {
+//     return db('todo')
+//         .where('id', Number(id))
+//         .update(todo);
+// }
+
+// function findTitle(title) {
+//     return db('todo')
+//         .where('title', title)
+// }
+
+// async function add(item) {
+//     const [id] = await db('todo').insert(item);
+//     return findById(id);
+// }
+
+// function findById(id) {
+//     return db('todo')
+//         .where({ id })
+//         .first();
+// }
+
+// function remove(title, id) {
+//     return db('todo')
+//         .where('title', title)
+//         .del()
+//         .then(() => { return findBy(id) })
+// }

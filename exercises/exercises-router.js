@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Exdb = require('../exercises/exercises-model')
 
+const restricted = require('../auth/auth-middleware')
 
 
 router.get('/', (req,res) => {
@@ -14,9 +15,9 @@ router.get('/', (req,res) => {
 })
 
 
-router.get('/:id', (req,res) => {
-    const user_id = req.params.id
-    Exdb.findBy({user_id})
+router.get('/allworkouts', restricted, (req,res) => {
+    const userID = req.decodedJwt.userid
+    Exdb.findById(userID)
     .then(exercises => {
         res.status(200).json(exercises)
     })
@@ -27,11 +28,9 @@ router.get('/:id', (req,res) => {
 
 
 
-
-
-router.post('/exercise', (req,res) => {
-    const exercise = req.body
-    Exdb.add(exercise)
+router.post('/exercise', restricted , (req,res) => {
+    const userID = {...req.body, user_id: req.decodedJwt.userid}
+    Exdb.add(userID)
      .then(exercise => {
          res.status(200).json(exercise)
      })
@@ -41,14 +40,19 @@ router.post('/exercise', (req,res) => {
 })
 
 
-router.put('/update/:user_id', (req,res) => {
-    const id = req.params.user_id
-    const changes = req.body
 
-    Exdb.findById(id)
+
+
+router.put('/update',restricted, (req,res) => {
+    const id = req.decodedJwt.userid
+    const changes = req.body
+    const title = req.body.exercise_name
+
+
+    Exdb.findTitle(title)
         .then(exercise => {
             if(exercise) {
-                Exdb.update(changes,id)
+                Exdb.update(id, changes)
                  .then(updatedExcercise => {
                      res.json(updatedExcercise);
                  });
@@ -60,5 +64,33 @@ router.put('/update/:user_id', (req,res) => {
             res.status(500).json({message: "failed to update exercise"})
         })
 })
+
+
+
+
+router.delete('/delete', restricted, (req,res) => {
+    const exercise_name = req.body.exercise_name;
+    
+    Exdb.remove(exercise_name)
+        .then(title => {
+            res.status(200).json(title)
+        })
+
+        .catch(err => {
+            res.status(500).json({ Message: "Catch error 500" })
+        })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const Userdb = require('./users-model')
 const router = require('express').Router()
+const restricted = require('../auth/auth-middleware')
 
 
 
-
-router.get('/', (req,res) => {
+router.get('/',restricted, (req,res) => {
     Userdb.find()
      .then(user => {
          res.status(200).json(user)
@@ -15,8 +15,8 @@ router.get('/', (req,res) => {
 })
 
 
-router.delete('/remove/:id', (req,res) => {
-    const {user_id} = req.params
+router.delete('/remove', restricted, (req,res) => {
+    const user_id = req.decodedJwt.userid
 
     Userdb.remove(user_id)
      .then(user => {

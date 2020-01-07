@@ -3,7 +3,7 @@ const Userdb = require('../users/users-model')
 const authRouter = require('../auth/auth-router')
 const usersRouter = require('../users/users-router')
 const exerciseRouter = require('../exercises/exercises-router')
-
+const bcrypt = require('bcryptjs')
 
 
 const server = express()
@@ -14,7 +14,6 @@ server.use(express.json())
 
 server.use('/api/auth', authRouter)
 server.use('/api', usersRouter)
-
 server.use('/api/user', exerciseRouter)
 
 
