@@ -89,4 +89,12 @@ exports.down = function(knex) {
 };
 
 
-
+// {
+//     "exercise_name": "new123",
+//     "muscle_group": "leg",
+//     "weight_number": "1100",
+//     "reps": 11,
+//     "date": "11/1/19",
+//     "sets": 3,
+//     "Goals": "no goals"
+// }
