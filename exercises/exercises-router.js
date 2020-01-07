@@ -4,7 +4,8 @@ const Exdb = require('../exercises/exercises-model')
 const restricted = require('../auth/auth-middleware')
 
 
-router.get('/', (req,res) => {
+router.get('/',restricted, (req,res) => {
+    
     Exdb.find()
      .then(exercise => {
          res.status(200).json(exercise)
@@ -15,9 +16,9 @@ router.get('/', (req,res) => {
 })
 
 
-router.get('/allworkouts', restricted, (req,res) => {
-    const userID = req.decodedJwt.userid
-    Exdb.findById(userID)
+router.get('/all', restricted, (req,res) => {
+    const id = req.decodedJwt.userid
+    Exdb.findBy(id)
     .then(exercises => {
         res.status(200).json(exercises)
     })
