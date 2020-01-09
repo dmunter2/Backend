@@ -5,7 +5,6 @@ const restricted = require('../auth/auth-middleware')
 
 
 router.get('/',restricted, (req,res) => {
-    
     Exdb.find()
      .then(exercise => {
          res.status(200).json(exercise)
