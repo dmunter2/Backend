@@ -4,14 +4,14 @@ const authRouter = require('../auth/auth-router')
 const usersRouter = require('../users/users-router')
 const exerciseRouter = require('../exercises/exercises-router')
 const bcrypt = require('bcryptjs')
-
+const cors = require('cors')
 
 const server = express()
 
 
 server.use(express.json())
 
-
+server.use(cors())
 server.use('/api/auth', authRouter)
 server.use('/api', usersRouter)
 server.use('/api/user', exerciseRouter)
