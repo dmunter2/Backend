@@ -33,7 +33,7 @@ async function add(exercise) {
 
 
 function findBy(id) {
-    return db('exercises').select('exercise_name', 'muscle_group', 'weight_number' ).where({ user_id: id })
+    return db('exercises').select('exercise_name', 'muscle_group', 'weight_number', 'sets', 'date', 'Goals', 'reps' ).where({ user_id: id })
 }
 
 
