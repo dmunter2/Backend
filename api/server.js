@@ -20,7 +20,7 @@ server.use('/api/user', exerciseRouter)
 
 
 server.get('/', (req,res) => {
-    res.send('You are in!')
+    res.send({ api: 'you are in!' })
 })
 
 
