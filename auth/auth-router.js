@@ -40,7 +40,8 @@ router.post('/login', (req,res) => {
              const token = genToken(user)
              res.status(200).json({
                  message: `Welcome to the Weightlifting Journal ${user.username}!`,
-                 token: token
+                 token: token,
+                 user_id: `${user.id}`
              })
          } else {
             res.status(400).json({message: "invalid credentials"})
@@ -71,3 +72,4 @@ function genToken(user) {
 
 
 module.exports = router;
+
