@@ -4,15 +4,15 @@ const Exdb = require('../exercises/exercises-model')
 const restricted = require('../auth/auth-middleware')
 
 
-router.get('/',restricted, (req,res) => {
-    Exdb.find()
-     .then(exercise => {
-         res.status(200).json(exercise)
-     })
-     .catch(err => {
-         res.status(400).json(err)
-     })
-})
+// router.get('/',restricted, (req,res) => {
+//     Exdb.find()
+//      .then(exercise => {
+//          res.status(200).json(exercise)
+//      })
+//      .catch(err => {
+//          res.status(400).json(err)
+//      })
+// })
 
 
 router.get('/all', restricted, (req,res) => {
